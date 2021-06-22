@@ -77,10 +77,10 @@ def update(dog_id):
     return redirect(url_for('dog_profile', dog_id=dog_id))
     pass
 
-@app.route('/masterlist')
-def masterlist():
+@app.route('/mastertable')
+def mastertable():
     dogs = show_dogs()
-    return render_template('masterlist.html', dogs=dogs)
+    return render_template('mastertable.html', dogs=dogs)
 
 if __name__ == '__main__':
     app.run(debug=True)
