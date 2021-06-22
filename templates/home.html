@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Doggo Training School{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Doggo Training School!</h2>
+    <a class="nav-link" href="{{ url_for('enrollment') }}">Enroll your dog here!</a>
+<a class="nav-link" href="{{ url_for('sqltest') }}">Test SQL here</a>
+{% endblock %}

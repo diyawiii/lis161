@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Test for Dictionaries{% endblock %}
+
+{% block content %}
+    <h2>This is a test for listing dictionaries</h2>
+    {% for x in list %}
+    <h4>{{ x }}</h4>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Your Dog{% endblock %}
+
+{% block content %}
+<h1>{{ dogs.name }}</h1>
+
+<ul>
+  {% if dogs.breed %}
+  <li>Breed: {{ dogs.breed }}</li>
+  {% else %}
+  <li>No breed info available</li>
+  {% endif %}
+  <li>Age: {{ dogs.age }}</li>
+  <li>Owner: {{dogs.owner}}</li>
+  <li>ID Number: {{dogs.id}}</li>
+  <li>Favorite Treat: {{dogs.treats}} </li>
+</ul>
+<form action="{{ url_for('modify',dog_name=dogs.name, dog_id=dogs.id) }}" method="post">
+  <input class="btn btn-secondary" type="submit" value="Edit" name="action">
+  <input class="btn btn-danger" type="submit" value="Delete" name="action">
+</form>
+{% endblock %}
