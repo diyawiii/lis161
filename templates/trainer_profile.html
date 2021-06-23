@@ -2,8 +2,14 @@
 {% block title %}{{ trainer }}{% endblock %}
 
 {% block content %}
+<h1>Dogs</h1>
 {% for dog in dogs %}
-  <h1>{{ dog.name }}</h1>
+  <h4>{{ dog.name }}</h4>
+  {% if dogs.pic %}
+  <img src="{{ dog.pic }}" alt="">
+  {% else %}
+  <br><p>No Picture</p>
+  {% endif %}
   <ul>
     {% if dog.breed %}
     <li>Breed: {{ dog.breed }}</li>
