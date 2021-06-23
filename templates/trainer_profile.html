@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{{ trainer }}{% endblock %}
+
+{% block content %}
+{% for dog in dogs %}
+  <h1>{{ dog.name }}</h1>
+  <ul>
+    {% if dog.breed %}
+    <li>Breed: {{ dog.breed }}</li>
+    {% else %}
+    <li>No breed info available</li>
+    {% endif %}
+    <li>Age: {{ dog.age }}</li>
+    <li>Owner: {{dog.owner}}</li>
+    <li>ID Number: {{dog.id}}</li>
+    <li>Favorite Treat: {{dog.treats}}</li>
+  </ul>
+{% endfor %}
+{% endblock %}

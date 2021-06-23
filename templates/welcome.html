@@ -3,6 +3,6 @@
 {% block content %}
 <h2>Welcome to Doggo Training School {{ dogs.name }} and {{dogs.owner}}</h2>
 
-<p>Your assigned trainer is </p>
+<p>Your assigned trainer is {{ dogs.trainer }}</p>
 <p>Click <a href="{{ url_for('dog_profile', dog_id=dogs.id) }}">here</a> if you'd like to edit your dog's profile</p>
 {% endblock %}

@@ -30,7 +30,8 @@ def process():
                 'age': request.form['dog_age'],
                 'owner': request.form['dog_owner'],
                 'treats': request.form['dog_treats'],
-                'trainer': assign_trainer(dog)}
+                'pic': request.form['dog_pic'],
+                'trainer': assign_trainer()}
     enroll_dog(dog_data)
     # change this redirect to congrats on enrolling, here is your assigned trainer, link to dog's profile
     return redirect(url_for('welcome',dog_name=request.form['dog_name'], dog_owner=request.form['dog_owner']))
@@ -82,8 +83,14 @@ def update(dog_id):
 
 @app.route('/trainers')
 def trainers():
-    order_by_trainer()
-    return render_template('list_trainers.html')
+    dogs = order_by_trainer()
+    trainers = show_trainers()
+    return render_template('list_trainers.html', dogs=dogs, trainers=trainers)
+
+@app.route('/trainer_profile/<string:trainer>')
+def trainer_profile(trainer):
+    dogs = show_trainers_dogs(trainer)
+    return render_template('trainer_profile.html', dogs=dogs, trainer=trainer)
 
 #add trainer profiles
 #add dog progress somewhere?

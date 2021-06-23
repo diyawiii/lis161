@@ -18,6 +18,7 @@
   <li>Owner: {{dogs.owner}}</li>
   <li>ID Number: {{dogs.id}}</li>
   <li>Favorite Treat: {{dogs.treats}} </li>
+  <li>Trainer: {{dogs.trainer}} </li>
 </ul>
 <form action="{{ url_for('modify',dog_name=dogs.name, dog_id=dogs.id) }}" method="post">
   <input class="btn btn-secondary" type="submit" value="Edit" name="action">

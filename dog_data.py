@@ -21,7 +21,7 @@ def show_dogs():
 
 def read_dog_by_name_owner(dog_name, dog_owner):
     conn, cur = connect_db(db_path)
-    query = 'SELECT id FROM dogs WHERE name=? AND owner=?'
+    query = 'SELECT * FROM dogs WHERE name=? AND owner=?'
     results = cur.execute(query, (dog_name, dog_owner,)).fetchone()
     conn.close()
     print(results)
@@ -38,12 +38,14 @@ def read_dog_by_id(dog_id):
 # Insert Pet Data to DB
 def enroll_dog(dog_data):
     conn, cur = connect_db(db_path)
-    query = 'INSERT INTO dogs (name, breed, age, owner, treats) VALUES (?,?,?,?,?)'
+    query = 'INSERT INTO dogs (name, breed, age, owner, treats, pic, trainer) VALUES (?,?,?,?,?,?,?)'
     values = (dog_data['name'],
               dog_data['breed'],
               dog_data['age'],
               dog_data['owner'],
-              dog_data['treats'])
+              dog_data['treats'],
+              dog_data['pic'],
+              dog_data['trainer'])
     cur.execute(query, values)
     conn.commit()
     conn.close()
@@ -72,7 +74,8 @@ def update_dogs(dog_data):
     conn.close()
 
 def assign_trainer():
-    return trainers[random.randint(0, len(trainers))]
+    print(trainers[random.randint(0, len(trainers)-1)])
+    return trainers[random.randint(0, len(trainers)-1)]
 
 def add_trainer(name):
     trainers.append(name)
@@ -84,4 +87,16 @@ def order_by_trainer():
     conn.close()
     return result
 
-#
+def show_trainers():
+    conn, cur = connect_db(db_path)
+    query = 'SELECT DISTINCT trainer FROM dogs'
+    result = cur.execute(query).fetchall()
+    conn.close()
+    return result
+
+def show_trainers_dogs(name):
+    conn, cur = connect_db(db_path)
+    query = 'SELECT * FROM dogs WHERE trainer=?'
+    result = cur.execute(query, (name,)).fetchall()
+    conn.close()
+    return result
