@@ -17,6 +17,6 @@
     <label for="d_pic">URL of your dog's picture:</label>
     <input type="url" name="dog_pic" id="d_pic" value="{{ dog.pic }}"><br><br>
     <input class="btn btn-primary" type="submit" value="Save">
-    <a class="btn btn-secondary" href="{{ url_for('', dog_id=dog.id) }}">Cancel</a>
+    <a class="btn btn-secondary" href="{{ url_for('dogs', dog_id=dog.id) }}">Cancel</a>
 </form>
 {% endblock %}

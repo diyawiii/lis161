@@ -99,8 +99,9 @@ def show_trainers_dogs(name):
 
 def update_trick(dog_data):
     conn, cur = connect_db(db_path)
-    query = 'UPDATE dogs SET tricks=? WHERE id=?'
-    values = (dog_data['tricks'], dog_data['id'])
+    #query = 'UPDATE dogs SET tricks=? WHERE id=?'
+    query = 'UPDATE dogs SET tricks= (SELECT tricks FROM dogs WHERE id=?) ||", " || ? WHERE id=?'
+    values = (dog_data['id'], dog_data['tricks'], dog_data['id'])
     cur.execute(query, values)
     conn.commit()
     conn.close()
