@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    populate_table()
     return render_template('index.html')
 
 @app.route('/dogs')
@@ -30,7 +29,8 @@ def process():
                 'breed': request.form['dog_breed'],
                 'age': request.form['dog_age'],
                 'owner': request.form['dog_owner'],
-                'treats': request.form['dog_treats']}
+                'treats': request.form['dog_treats'],
+                'trainer': assign_trainer(dog)}
     enroll_dog(dog_data)
     # change this redirect to congrats on enrolling, here is your assigned trainer, link to dog's profile
     return redirect(url_for('welcome',dog_name=request.form['dog_name'], dog_owner=request.form['dog_owner']))
@@ -38,7 +38,6 @@ def process():
 @app.route('/welcome/<string:dog_name>/<string:dog_owner>')
 def welcome(dog_name, dog_owner):
     dog = read_dog_by_name_owner(dog_name, dog_owner)
-    #add call trainer assignment method here
     return render_template('welcome.html', dogs=dog)
 
 @app.route('/modify/<int:dog_id>', methods=['POST'])
@@ -59,6 +58,8 @@ def update(dog_id):
     dog_owner = request.form['dog_owner']
     dog_breed = request.form['dog_breed']
     dog_treats = request.form['dog_treats']
+    dog_pic = request.form['dog_pic']
+
 
 
     # Prepare data for DB Update
@@ -68,7 +69,8 @@ def update(dog_id):
         'age': dog_age,
         'owner': dog_owner,
         'treats': dog_treats,
-        'id': dog_id
+        'id': dog_id,
+        'pic':dog_pic
     }
 
     #Update DB
@@ -77,10 +79,15 @@ def update(dog_id):
     return redirect(url_for('dog_profile', dog_id=dog_id))
     pass
 
-@app.route('/mastertable')
-def mastertable():
-    dogs = show_dogs()
-    return render_template('mastertable.html', dogs=dogs)
+
+@app.route('/trainers')
+def trainers():
+    order_by_trainer()
+    return render_template('list_trainers.html')
+
+#add trainer profiles
+#add dog progress somewhere?
+#add vaccination somewhere
 
 if __name__ == '__main__':
     app.run(debug=True)

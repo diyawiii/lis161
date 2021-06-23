@@ -3,7 +3,11 @@
 
 {% block content %}
 <h1>{{ dogs.name }}</h1>
-
+{% if dogs.pic %}
+<img src="{{ dogs.pic }}" alt="">
+{% else %}
+<br><p>No Picture</p>
+{% endif %}
 <ul>
   {% if dogs.breed %}
   <li>Breed: {{ dogs.breed }}</li>

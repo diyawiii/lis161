@@ -1,7 +1,8 @@
-import sqlite3
+import sqlite3, random
 
 db_path = 'test.db'
 
+trainers = ['Youngster Joey', 'Sabrina', 'Red', 'Steven']
 
 # Connect to a database
 def connect_db(path):
@@ -58,14 +59,29 @@ def unenroll_dog(dog_id):
 # Update Pet Data from DB
 def update_dogs(dog_data):
     conn, cur = connect_db(db_path)
-    query = 'UPDATE dogs SET name=?, breed=?, age=?, owner=?, treats=? WHERE id=?'
+    query = 'UPDATE dogs SET name=?, breed=?, age=?, owner=?, treats=?, pic=? WHERE id=?'
     values = (dog_data['name'],
               dog_data['breed'],
               dog_data['age'],
               dog_data['owner'],
               dog_data['treats'],
+              dog_data['pic'],
               dog_data['id'])
     cur.execute(query, values)
     conn.commit()
     conn.close()
 
+def assign_trainer():
+    return trainers[random.randint(0, len(trainers))]
+
+def add_trainer(name):
+    trainers.append(name)
+
+def order_by_trainer():
+    conn, cur = connect_db(db_path)
+    query = 'SELECT * FROM dogs ORDER BY trainer'
+    result = cur.execute(query).fetchall()
+    conn.close()
+    return result
+
+#

@@ -13,7 +13,9 @@
     <label for="d_owner">Owner:</label>
     <input type="text" name="dog_owner" id="d_owner" value="{{ dog.owner }}"><br><br>
     <label for="d_treats">Treats:</label>
-    <input type="text" name="dog_treats" id="d_treats" value="{{ dog.treats }}"><br><br><br>
+    <input type="text" name="dog_treats" id="d_treats" value="{{ dog.treats }}"><br><br>
+    <label for="d_pic">URL of your dog's picture:</label>
+    <input type="url" name="dog_pic" id="d_pic" value="{{ dog.pic }}"><br><br>
     <input class="btn btn-primary" type="submit" value="Save">
     <a class="btn btn-secondary" href="{{ url_for('dogs', dog_id=dog.id) }}">Cancel</a>
 </form>
