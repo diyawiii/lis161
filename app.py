@@ -85,12 +85,23 @@ def modify_medical(dog_id):
 
 @app.route('/update_medical/<int:dog_id>', methods=['POST'])
 def update_medical_record(dog_id):
-    dog_medical = request.form['dog_medical']
+    dog_medical = request.form['new_medical']
     dog_data = {
         'medical': dog_medical,
         'id': dog_id
     }
     update_medical(dog_data)
+    return redirect(url_for('dog_profile', dog_id=dog_id))
+    pass
+
+@app.route('/edit_medical/<int:dog_id>', methods=['post'])
+def edit_medical_record(dog_id):
+    dog_medical = request.form['edit_medical']
+    dog_data = {
+        'medical': dog_medical,
+        'id': dog_id
+    }
+    edit_medical(dog_data)
     return redirect(url_for('dog_profile', dog_id=dog_id))
     pass
 
@@ -115,8 +126,6 @@ def update_tricks(dog_id):
     update_trick(dog_data)
     return redirect(url_for('dog_profile', dog_id=dog_id))
     pass
-#add dog progress somewhere
-#add vaccination somewhere
 
 if __name__ == '__main__':
     app.run(debug=True)

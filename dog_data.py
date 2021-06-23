@@ -78,9 +78,18 @@ def update_dogs(dog_data):
 
 def update_medical(dog_data):
     conn, cur = connect_db(db_path)
-    query = 'UPDATE dogs SET medical = (SELECT medical FROM dogs WHERE id=?) | | ", " | | ? WHERE id=?'
+    query = 'UPDATE dogs SET medical = (SELECT medical FROM dogs WHERE id=?) ||","|| char(10) || ? WHERE id=?'
     values = (dog_data['id'],
               dog_data['medical'],
+              dog_data['id'])
+    cur.execute(query, values)
+    conn.commit()
+    conn.close()
+
+def edit_medical(dog_data):
+    conn, cur = connect_db(db_path)
+    query = 'UPDATE dogs SET medical = ? WHERE id=?'
+    values = (dog_data['medical'],
               dog_data['id'])
     cur.execute(query, values)
     conn.commit()
