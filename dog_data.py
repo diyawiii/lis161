@@ -38,14 +38,15 @@ def read_dog_by_id(dog_id):
 # Insert Pet Data to DB
 def enroll_dog(dog_data):
     conn, cur = connect_db(db_path)
-    query = 'INSERT INTO dogs (name, breed, age, owner, treats, pic, trainer) VALUES (?,?,?,?,?,?,?)'
+    query = 'INSERT INTO dogs (name, breed, age, owner, treats, pic, trainer, medical) VALUES (?,?,?,?,?,?,?,?)'
     values = (dog_data['name'],
               dog_data['breed'],
               dog_data['age'],
               dog_data['owner'],
               dog_data['treats'],
               dog_data['pic'],
-              dog_data['trainer'])
+              dog_data['trainer'],
+              dog_data['medical'])
     cur.execute(query, values)
     conn.commit()
     conn.close()
@@ -68,6 +69,18 @@ def update_dogs(dog_data):
               dog_data['owner'],
               dog_data['treats'],
               dog_data['pic'],
+              dog_data['id'],
+              dog_data['medical'],
+              dog_data['id'])
+    cur.execute(query, values)
+    conn.commit()
+    conn.close()
+
+def update_medical(dog_data):
+    conn, cur = connect_db(db_path)
+    query = 'UPDATE dogs SET medical = (SELECT medical FROM dogs WHERE id=?) | | ", " | | ? WHERE id=?'
+    values = (dog_data['id'],
+              dog_data['medical'],
               dog_data['id'])
     cur.execute(query, values)
     conn.commit()
@@ -99,7 +112,6 @@ def show_trainers_dogs(name):
 
 def update_trick(dog_data):
     conn, cur = connect_db(db_path)
-    #query = 'UPDATE dogs SET tricks=? WHERE id=?'
     query = 'UPDATE dogs SET tricks= (SELECT tricks FROM dogs WHERE id=?) ||", " || ? WHERE id=?'
     values = (dog_data['id'], dog_data['tricks'], dog_data['id'])
     cur.execute(query, values)

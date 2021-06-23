@@ -1,28 +1,32 @@
 {% extends 'base.html' %}
-{% block title %}Your Dog{% endblock %}
+{% block title %}{{ dog.name }}'s Profile{% endblock %}
 
 {% block content %}
-<h1>{{ dogs.name }}</h1>
-{% if dogs.pic %}
-<img src="{{ dogs.pic }}" alt="">
+<h1>{{ dog.name }}</h1>
+{% if dog.pic %}
+<img src="{{ dog.pic }}" alt="">
 {% else %}
 <br><p>No Picture</p>
 {% endif %}
 <ul>
-  {% if dogs.breed %}
-  <li>Breed: {{ dogs.breed }}</li>
+  {% if dog.breed %}
+  <li>Breed: {{ dog.breed }}</li>
   {% else %}
   <li>No breed info available</li>
   {% endif %}
-  <li>Age: {{ dogs.age }}</li>
-  <li>Owner: {{dogs.owner}}</li>
-  <li>ID Number: {{dogs.id}}</li>
-  <li>Favorite Treat: {{dogs.treats}} </li>
-  <li>Trainer: <a href="{{ url_for('trainer_profile', trainer=dogs.trainer) }}">{{dogs.trainer}}</a></li>
-  <li>Known Tricks: {{dogs.tricks}} </li>
+  <li>Age: {{ dog.age }}</li>
+  <li>Owner: {{ dog.owner }}</li>
+  <li>ID Number: {{ dog.id }}</li>
+  <li>Favorite Treat: {{ dog.treats }} </li>
+  <li>Trainer: <a href="{{ url_for('trainer_profile', trainer=dog.trainer) }}">{{ dog.trainer }}</a></li>
+  <li>Known Tricks: {{ dog.tricks }} </li>
 </ul>
-<form action="{{ url_for('modify',dog_name=dogs.name, dog_id=dogs.id) }}" method="post">
+<form action="{{ url_for('modify',dog_name=dog.name, dog_id=dog.id) }}" method="post">
   <input class="btn btn-secondary" type="submit" value="Edit" name="action">
   <input class="btn btn-danger" type="submit" value="Delete" name="action">
 </form>
+<br><br>
+<h3>Medical Record</h3>
+<p>{{ dog.medical }}</p>
+<a href class="btn btn-primary" href="{{ url_for('modify_medical', dog_id=dog.id) }}" name="Update">Edit Record</a>
 {% endblock %}

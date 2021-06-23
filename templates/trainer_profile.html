@@ -2,7 +2,7 @@
 {% block title %}{{ trainer }}{% endblock %}
 
 {% block content %}
-<h1>Dogs</h1>
+<h1>Dogs being Trained by {{ trainer }}</h1>
 {% for dog in dogs %}
   <h4>{{ dog.name }}</h4>
   {% if dog.pic %}
@@ -24,7 +24,7 @@
   </ul>
 <form action="{{ url_for('update_tricks', dog_id=dog.id) }}" method="post">
   <label for="d_tricks">Log New Tricks:</label>
-  <input type="text" name="dog_tricks" id="d_tricks" value="{{ dog.tricks }}"><br><br>
+  <input type="text" name="dog_tricks" id="d_tricks"><br><br>
   <input class="btn btn-primary" type="submit" value="Update Tricks" name="action">
 </form>
 <br><br>

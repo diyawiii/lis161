@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Edit Your Profile{% endblock %}
+{% block title %}Edit {{ dog.name }}'s Profile{% endblock %}
 {% block content %}
 <h1>Edit Dog Profile</h1>
 <form action="{{ url_for('update', dog_id=dog.id) }}" method="post">

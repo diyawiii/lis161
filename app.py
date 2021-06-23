@@ -14,8 +14,8 @@ def dogs():
 
 @app.route('/dog_profile/<int:dog_id>')
 def dog_profile(dog_id):
-    dogs = read_dog_by_id(dog_id)
-    return render_template('dog_profile.html',dogs=dogs)
+    dog = read_dog_by_id(dog_id)
+    return render_template('dog_profile.html',dog=dog)
 
 @app.route('/enroll')
 def enroll():
@@ -31,9 +31,9 @@ def process():
                 'owner': request.form['dog_owner'],
                 'treats': request.form['dog_treats'],
                 'pic': request.form['dog_pic'],
+                'medical': request.form['dog_medical'],
                 'trainer': assign_trainer()}
     enroll_dog(dog_data)
-    # change this redirect to congrats on enrolling, here is your assigned trainer, link to dog's profile
     return redirect(url_for('welcome',dog_name=request.form['dog_name'], dog_owner=request.form['dog_owner']))
 
 @app.route('/welcome/<string:dog_name>/<string:dog_owner>')
@@ -61,8 +61,6 @@ def update(dog_id):
     dog_treats = request.form['dog_treats']
     dog_pic = request.form['dog_pic']
 
-
-
     # Prepare data for DB Update
     dog_data = {
         'name': dog_name,
@@ -71,7 +69,7 @@ def update(dog_id):
         'owner': dog_owner,
         'treats': dog_treats,
         'id': dog_id,
-        'pic': dog_pic
+        'pic': dog_pic,
     }
 
     #Update DB
@@ -80,6 +78,21 @@ def update(dog_id):
     return redirect(url_for('dog_profile', dog_id=dog_id))
     pass
 
+@app.route('/modify_medical/<int:dog_id>', methods=['POST'])
+def modify_medical(dog_id):
+    dog = read_dog_by_id(dog_id)
+    return render_template('edit_medical.html', dog=dog)
+
+@app.route('/update_medical/<int:dog_id>', methods=['POST'])
+def update_medical_record(dog_id):
+    dog_medical = request.form['dog_medical']
+    dog_data = {
+        'medical': dog_medical,
+        'id': dog_id
+    }
+    update_medical(dog_data)
+    return redirect(url_for('dog_profile', dog_id=dog_id))
+    pass
 
 @app.route('/trainers')
 def trainers():
