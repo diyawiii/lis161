@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Enrolled Dogs{% endblock %}
 {% block content %}
-<h1>List of Dogs</h1>
+<h1>List of Enrolled Dogs</h1>
 <ul>
   {% for dog in dogs %}
     <li><a href="{{ url_for('dog_profile', dog_id=dog.id) }}">{{ dog.name }}</a></li>

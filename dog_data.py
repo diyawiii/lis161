@@ -69,8 +69,6 @@ def update_dogs(dog_data):
               dog_data['owner'],
               dog_data['treats'],
               dog_data['pic'],
-              dog_data['id'],
-              dog_data['medical'],
               dog_data['id'])
     cur.execute(query, values)
     conn.commit()

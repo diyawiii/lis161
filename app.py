@@ -34,7 +34,7 @@ def process():
                 'medical': request.form['dog_medical'],
                 'trainer': assign_trainer()}
     enroll_dog(dog_data)
-    return redirect(url_for('welcome',dog_name=request.form['dog_name'], dog_owner=request.form['dog_owner']))
+    return redirect(url_for('welcome', dog_name=request.form['dog_name'], dog_owner=request.form['dog_owner']))
 
 @app.route('/welcome/<string:dog_name>/<string:dog_owner>')
 def welcome(dog_name, dog_owner):
