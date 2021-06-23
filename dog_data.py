@@ -2,7 +2,7 @@ import sqlite3, random
 
 db_path = 'test.db'
 
-trainers = ['Youngster Joey', 'Sabrina', 'Red', 'Steven']
+trainers = ['Youngster Joey', 'Sabrina', 'Red', 'Steven', 'Allister']
 
 # Connect to a database
 def connect_db(path):
@@ -74,11 +74,7 @@ def update_dogs(dog_data):
     conn.close()
 
 def assign_trainer():
-    print(trainers[random.randint(0, len(trainers)-1)])
     return trainers[random.randint(0, len(trainers)-1)]
-
-def add_trainer(name):
-    trainers.append(name)
 
 def order_by_trainer():
     conn, cur = connect_db(db_path)
@@ -100,3 +96,11 @@ def show_trainers_dogs(name):
     result = cur.execute(query, (name,)).fetchall()
     conn.close()
     return result
+
+def update_trick(dog_data):
+    conn, cur = connect_db(db_path)
+    query = 'UPDATE dogs SET tricks=? WHERE id=?'
+    values = (dog_data['tricks'], dog_data['id'])
+    cur.execute(query, values)
+    conn.commit()
+    conn.close()

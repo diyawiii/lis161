@@ -71,7 +71,7 @@ def update(dog_id):
         'owner': dog_owner,
         'treats': dog_treats,
         'id': dog_id,
-        'pic':dog_pic
+        'pic': dog_pic
     }
 
     #Update DB
@@ -92,8 +92,17 @@ def trainer_profile(trainer):
     dogs = show_trainers_dogs(trainer)
     return render_template('trainer_profile.html', dogs=dogs, trainer=trainer)
 
-#add trainer profiles
-#add dog progress somewhere?
+@app.route('/update_tricks/<int:dog_id>', methods=['post'])
+def update_tricks(dog_id):
+    tricks = request.form['dog_tricks']
+    dog_data = {
+        'tricks': tricks,
+        'id': dog_id,
+    }
+    update_trick(dog_data)
+    return redirect(url_for('dog_profile', dog_id=dog_id))
+    pass
+#add dog progress somewhere
 #add vaccination somewhere
 
 if __name__ == '__main__':
