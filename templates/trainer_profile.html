@@ -4,7 +4,7 @@
 {% block content %}
 <h1>Dogs being Trained by {{ trainer }}</h1>
 {% for dog in dogs %}
-  <h4>{{ dog.name }}</h4>
+  <h4><a href="{{ url_for('dog_profile', dog_id=dog.id) }}">{{ dog.name }}</a></h4>
   {% if dog.pic %}
   <img src="{{ dog.pic }}" alt="">
   {% else %}

@@ -2,21 +2,14 @@
 {% block title %}Edit {{ dog.name }}'s Medical Record{% endblock %}
 {% block content %}
 <h3>Current Medical Record</h3>
-<p>{{ dog.medical }}</p><br>
+<p>{{ dog.medical }}</p><br><br>
 <h3>Edit Existing Medical Records</h3>
 <form action="{{ url_for('edit_medical_record', dog_id=dog.id) }}" method="post">
   <label for="d_edit_medical">Edit Medical Record:</label><br>
   <textarea name="edit_medical" cols="30" rows="10" id="d_edit_medical">{{ dog.medical }}</textarea><br>
   <input class="btn btn-primary" type="submit" value="Edit Record" name="action">
   <a class="btn btn-danger" href="{{ url_for('dog_profile', dog_id=dog.id) }}">Cancel</a>
-</form><br><br>
-<h3>Update Medical Records</h3>
-<form action="{{ url_for('update_medical_record', dog_id=dog.id) }}" method="post">
-  <label for="d_update_medical">Log New Medical Record:</label><br>
-  <input type="text" name="new_medical" id="d_update_medical"><br><br>
-  <input class="btn btn-primary" type="submit" value="Update Record" name="action">
-  <a class="btn btn-danger" href="{{ url_for('dog_profile', dog_id=dog.id) }}">Cancel</a>
-</form>
+</form><br>
 {% endblock %}
 
 

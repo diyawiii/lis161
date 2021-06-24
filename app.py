@@ -14,6 +14,7 @@ def dogs():
 
 @app.route('/dog_profile/<int:dog_id>')
 def dog_profile(dog_id):
+    # returns information about one dog. Dog ID number used to identify
     dog = read_dog_by_id(dog_id)
     return render_template('dog_profile.html',dog=dog)
 
@@ -24,7 +25,7 @@ def enroll():
 
 @app.route('/process', methods=['post'])
 def process():
-    # Prepare data by extracting it from the HTML form
+    # Prepares data by extracting it from the HTML form
     dog_data = {'name': request.form['dog_name'],
                 'breed': request.form['dog_breed'],
                 'age': request.form['dog_age'],
@@ -32,14 +33,16 @@ def process():
                 'treats': request.form['dog_treats'],
                 'pic': request.form['dog_pic'],
                 'medical': request.form['dog_medical'],
-                'trainer': assign_trainer()}
+                'trainer': assign_trainer()} # randomly assigns a trainer to the dog
+    # adds data to database
     enroll_dog(dog_data)
     return redirect(url_for('welcome', dog_name=request.form['dog_name'], dog_owner=request.form['dog_owner']))
 
 @app.route('/welcome/<string:dog_name>/<string:dog_owner>')
 def welcome(dog_name, dog_owner):
+    # returns information about one dog. Dog name and owner used to identify
     dog = read_dog_by_name_owner(dog_name, dog_owner)
-    return render_template('welcome.html', dogs=dog)
+    return render_template('welcome.html', dog=dog)
 
 @app.route('/modify/<int:dog_id>', methods=['POST'])
 def modify(dog_id):
@@ -49,7 +52,6 @@ def modify(dog_id):
     elif request.form['action'] == 'Delete':
         unenroll_dog(dog_id)
         return redirect(url_for('dogs'))
-
 
 @app.route('/update/<int:dog_id>', methods=['post'])
 def update(dog_id):
@@ -108,8 +110,7 @@ def edit_medical_record(dog_id):
 @app.route('/trainers')
 def trainers():
     dogs = order_by_trainer()
-    trainers = show_trainers()
-    return render_template('list_trainers.html', dogs=dogs, trainers=trainers)
+    return render_template('list_trainers.html', dogs=dogs, trainers=employed_trainers)
 
 @app.route('/trainer_profile/<string:trainer>')
 def trainer_profile(trainer):
