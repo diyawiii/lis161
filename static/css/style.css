@@ -65,13 +65,13 @@
 }
 
 .index-description-div {
-    background: center/70% url("../img/Background-side.png");
+    background: url("../img/Background-side.png") no-repeat  center  center fixed;
     background-size: cover;
     min-height: 100%;
     width: 100%;
     position: absolute;
     text-align: center;
-    margin-top: 6em;
+    margin-top: 10em;
     padding-top: 2em;
     display: flex;
     flex-direction: column;
@@ -136,7 +136,7 @@ h1 {
 
 .enroll-card {
     border: 2px solid #354f52;
-    margin-top: 5em;
+    margin-top: 1em;
     border-radius: 2em;
     transform: rotate(5deg);
 }
@@ -147,4 +147,15 @@ h1 {
 
 .enroll-div-cards {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    justify-items: auto;
+    height: 800px;
+    max-width: 50%;
+}
+
+#carouselExampleInterval {
+    margin-top: 5em;
+    max-height: 700px;
 }

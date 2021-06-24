@@ -4,7 +4,7 @@
     <title>Doggo Training School</title>
 </head>
 {% block content %}
-<div clas="index-body">
+<div>
 <div class="p-3 p-md-5 text-center bg-light index-bg">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal index-h">Welcome to Doggo Training School</h1>
@@ -13,13 +13,35 @@
     </div>
 </div>
 
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="3000">
+      <img src="../static/img/Dog%201.png" class="d-block w-100" alt="Dog 1">
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+      <img src="../static/img/Dog%202.png" class="d-block w-100" alt="Dog 2">
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+      <img src="../static/img/Dog%203.png" class="d-block w-100" alt="Dog 3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
 <div class="index-description-div container-fluid ">
     <div class="index-description">
         <h3 class="display-4">Arf! arf! arf!</h3>
         <p>The doggos are barking! It seems like someone enters the website!<br>
         Heads up! Before moving on and get trapped by the cuteness of our<br>
         doggos, read first the things below to get to know us more!</p>
-        <p>his platform is the Doggo Training School's online website<br>
+        <p>This platform is the Doggo Training School's online website<br>
         for the management of school's records of enrolled doggos'<br>
         training progress and veterinary information. This also offers<br>
         online registration for owners who want to enrol their cute furry<br>
