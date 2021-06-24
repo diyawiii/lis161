@@ -2,21 +2,37 @@
 {% block title %}Enroll Your Dog{% endblock %}
 {% block content %}
 <h1>Enroll your dog in Doggo Training School</h1>
-<form action="{{ url_for('process') }}" method="post">
-    <label for="d_name">Name of Dog:</label>
-    <input type="text" name="dog_name" id="d_name" required><br><br>
-    <label for="d_breed">Breed:</label>
-    <input type="text" name="dog_breed" id="d_breed"><br><br>
-    <label for="d_age">Age:</label>
-    <input type="number" name="dog_age" id="d_age"><br><br>
-    <label for="d_medical">Medical History:</label>
-    <input type="text" name="dog_medical" id="d_medical"><br><br>
-    <label for="o_name">Name of Owner:</label>
-    <input type="text" name="dog_owner" id="o_name" required><br><br>
-    <label for="d_treats">Treats:</label>
-    <input type="text" name="dog_treats" id="d_treats"><br><br>
-    <label for="d_pic">URL for Picture:</label>
-    <input type="text" name="dog_pic" id="d_pic"><br><br><br>
-    <input type="submit" value="Register!">
+<form class="enroll-form" action="{{ url_for('process') }}" method="post">
+    <p class="enroll-p">
+        <label class="enroll-label" for="d_name">Name of Dog:</label>
+        <input class="enroll-input form-control" type="text" name="dog_name" id="d_name" required><br><br>
+    </p>
+    <p class="enroll-p">
+        <label class="enroll-label" for="d_breed">Breed:</label>
+        <input class="enroll-input form-control" type="text" name="dog_breed" id="d_breed"><br><br>
+    </p>
+    <p class="enroll-p">
+        <label class="enroll-label" for="d_age">Age:</label>
+        <input class="enroll-input form-control" type="number" name="dog_age" id="d_age"><br><br>
+    </p>
+    <p class="enroll-p">
+        <label class="enroll-label" for="d_medical">Medical History:   </label>
+        <input class="enroll-input form-control" type="text" name="dog_medical" id="d_medical"><br><br>
+    </p>
+    <p class="enroll-p">
+        <label class="enroll-label" for="o_name">Name of Owner:   </label>
+        <input class="enroll-input form-control" type="text" name="dog_owner" id="o_name" required><br><br>
+    </p>
+    <p class="enroll-p">
+        <label class="enroll-label" for="d_treats">Treats:</label>
+        <input class="enroll-input form-control" type="text" name="dog_treats" id="d_treats"><br><br>
+    </p>
+    <p class="enroll-p">
+        <label class="enroll-label" for="d_pic">URL for Picture:</label>
+        <input class="enroll-input form-control" type="text" name="dog_pic" id="d_pic"><br>
+    </p>
+    <p class="enroll-p">
+        <input type="submit" value="Register!" class="btn btn-secondary enroll-button">
+    </p>
 </form>
 {% endblock %}
