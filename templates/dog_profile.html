@@ -16,7 +16,6 @@
   {% endif %}
   <li>Age: {{ dog.age }}</li>
   <li>Owner: {{ dog.owner }}</li>
-  <li>ID Number: {{ dog.id }}</li>
   <li>Favorite Treat: {{ dog.treats }} </li>
   <li>Trainer: <a href="{{ url_for('trainer_profile', trainer=dog.trainer) }}">{{ dog.trainer }}</a></li>
   <li>Known Tricks: {{ dog.tricks }} </li>

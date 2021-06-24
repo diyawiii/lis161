@@ -3,7 +3,6 @@
 {% block content %}
 <h1>Edit Dog Profile</h1>
 <form action="{{ url_for('update', dog_id=dog.id) }}" method="post">
-    <p>ID: {{ dog.id }}</p>
     <label for="d_name">Name of Pet:</label>
     <input type="text" name="dog_name" id="d_name" value="{{ dog.name }}" required><br><br>
     <label for="d_breed">Breed:</label>
@@ -17,6 +16,6 @@
     <label for="d_pic">URL of your dog's picture:</label>
     <input type="url" name="dog_pic" id="d_pic" value="{{ dog.pic }}"><br><br>
     <input class="btn btn-primary" type="submit" value="Save">
-    <a class="btn btn-secondary" href="{{ url_for('dogs', dog_id=dog.id) }}">Cancel</a>
+    <a class="btn btn-secondary" href="{{ url_for('dog_profile', dog_id=dog.id) }}">Cancel</a>
 </form>
 {% endblock %}
