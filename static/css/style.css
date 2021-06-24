@@ -1,4 +1,24 @@
-h1 {
-    color: pink;
-    background: black;
+.enroll-form {
+    display: table;
+    margin: 3em 0 0 2em;
+    padding-right: 2em;
+}
+
+.enroll-p {
+    display: table-row;
+}
+
+.enroll-label {
+    display: table-cell;
+    width: 43%;
+}
+
+.enroll-input {
+    display: table-cell;
+    width: 150%;
+}
+
+.enroll-button {
+    width: 10em;
+    column: 2;
 }
