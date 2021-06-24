@@ -25,7 +25,8 @@ def dog_profile(dog_id):
 # shows dog enrollment page
 @app.route('/enroll')
 def enroll():
-    return render_template('enroll.html')
+    dog_4list = random_dog()
+    return render_template('enroll.html', dog_4list=dog_4list)
 
 # processes dog enrollment data
 @app.route('/process', methods=['post'])

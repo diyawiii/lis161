@@ -1,4 +1,5 @@
 import sqlite3, random
+import random
 
 db_path = 'test.db'
 
@@ -35,6 +36,21 @@ def read_dog_by_id(dog_id):
     result = cur.execute(query, (dog_id,)).fetchone()
     conn.close()
     return result
+
+# selects 4 random dogs and returns their name and pic url
+def random_dog():
+    conn, cur = connect_db(db_path)
+    query = 'SELECT * FROM dogs'
+    result = cur.execute(query).fetchall()
+    enroll_showcase = []
+    while len(enroll_showcase) < 4:
+        chosen_dog = random.choice(result)
+        if random.randint(0, 1) == 1 and not (chosen_dog['name'], chosen_dog['pic']) in enroll_showcase:
+            enroll_showcase.append((chosen_dog['name'], chosen_dog['pic']))
+            continue
+    conn.close()
+    return enroll_showcase
+
 
 # Insert dog data to DB
 def enroll_dog(dog_data):
