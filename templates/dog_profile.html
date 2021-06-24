@@ -23,7 +23,7 @@
 </ul>
 <form action="{{ url_for('modify',dog_name=dog.name, dog_id=dog.id) }}" method="post">
   <input class="btn btn-secondary" type="submit" value="Edit" name="action">
-  <input class="btn btn-danger" type="submit" value="Delete" name="action">
+  <input class="btn btn-danger" type="submit" value="Unenroll" name="action">
 </form>
 <br><br>
 <h3>Medical Record</h3>
@@ -31,4 +31,7 @@
 <form action="{{ url_for('modify_medical', dog_id=dog.id) }}" method="post">
     <input class="btn btn-primary" type="submit" value="Edit Record" name="action">
 </form>
+
+<a class="nav-link" href="{{ url_for('dog_list') }}">List of Enrolled Dogs</a>
+<a class="nav-link" href="{{ url_for('trainer_list') }}">List of Trainers</a>
 {% endblock %}
