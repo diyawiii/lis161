@@ -1,24 +1,52 @@
-.enroll-form {
+.enroll-form, .edit-form {
     display: table;
     margin: 3em 0 0 2em;
     padding-right: 2em;
 }
 
-.enroll-p {
+.enroll-p, .edit-p {
     display: table-row;
 }
 
-.enroll-label {
+.enroll-label, .edit-label {
     display: table-cell;
     width: 43%;
+    font-weight: 600;
 }
 
-.enroll-input {
+.enroll-input, .edit-input {
     display: table-cell;
     width: 150%;
 }
 
 .enroll-button {
     width: 10em;
-    column: 2;
 }
+
+.edit-button, .edit-a {
+    display: table-cell;
+    width: 12em;
+}
+
+.edit-a {
+    width: 40%;
+}
+
+.id {
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.nav-link {
+    font-weight: 500;
+    margin: 0 .5em;
+}
+
+#logo {
+    transition: color .5s;
+}
+
+#logo:active, #logo:hover {
+    color: gray;
+}
+

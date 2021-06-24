@@ -2,21 +2,35 @@
 {% block title %}Edit {{ dog.name }}'s Profile{% endblock %}
 {% block content %}
 <h1>Edit Dog Profile</h1>
-<form action="{{ url_for('update', dog_id=dog.id) }}" method="post">
-    <p>ID: {{ dog.id }}</p>
-    <label for="d_name">Name of Pet:</label>
-    <input type="text" name="dog_name" id="d_name" value="{{ dog.name }}" required><br><br>
-    <label for="d_breed">Breed:</label>
-    <input type="text" name="dog_breed" id="d_breed" value="{{ dog.breed }}"><br><br>
-    <label for="d_age">Age:</label>
-    <input type="number" name="dog_age" id="d_age" value="{{ dog.age }}"><br><br>
-    <label for="d_owner">Owner:</label>
-    <input type="text" name="dog_owner" id="d_owner" value="{{ dog.owner }}"><br><br>
-    <label for="d_treats">Treats:</label>
-    <input type="text" name="dog_treats" id="d_treats" value="{{ dog.treats }}"><br><br>
-    <label for="d_pic">URL of your dog's picture:</label>
-    <input type="url" name="dog_pic" id="d_pic" value="{{ dog.pic }}"><br><br>
-    <input class="btn btn-primary" type="submit" value="Save">
-    <a class="btn btn-secondary" href="{{ url_for('dogs', dog_id=dog.id) }}">Cancel</a>
+<form action="{{ url_for('update', dog_id=dog.id) }}" class="edit-form" method="post">
+    <p class="id" >ID: {{ dog.id }}</p>
+    <p class="edit-p">
+        <label class="edit-label" for="d_name">Name of Pet:</label>
+        <input class="edit-input form-control" type="text" name="dog_name" id="d_name" value="{{ dog.name }}" required><br><br>
+    </p>
+    <p class="edit-p">
+        <label class="edit-label" for="d_breed">Breed:</label>
+        <input class="edit-input form-control" type="text" name="dog_breed" id="d_breed" value="{{ dog.breed }}"><br><br>
+    </p>
+    <p class="edit-p">
+        <label class="edit-label" for="d_age">Age:</label>
+        <input class="edit-input form-control" type="number" name="dog_age" id="d_age" value="{{ dog.age }}"><br><br>
+    </p>
+    <p class="edit-p">
+        <label class="edit-label" for="d_owner">Owner:</label>
+        <input class="edit-input form-control" type="text" name="dog_owner" id="d_owner" value="{{ dog.owner }}"><br><br>
+    </p>
+    <p class="edit-p">
+        <label class="edit-label" for="d_treats">Treats:</label>
+        <input class="edit-input form-control" type="text" name="dog_treats" id="d_treats" value="{{ dog.treats }}"><br><br>
+    </p>
+    <p class="edit-p">
+        <label class="edit-label" for="d_pic">URL of your dog's picture:</label>
+        <input class="edit-input form-control" type="url" name="dog_pic" id="d_pic" value="{{ dog.pic }}"><br><br>
+    </p>
+    <p class="edit-p">
+        <input class="btn btn-primary edit-button" type="submit" value="Save">
+        <a class="btn btn-danger edit-a" href="{{ url_for('dogs', dog_id=dog.id) }}">Cancel</a>
+    </p>
 </form>
 {% endblock %}
