@@ -3,11 +3,11 @@
 {% block content %}
 <h1>Trainers</h1>
     {% for trainer in trainers%}
-        <h3><a href="{{ url_for('trainer_profile', trainer=trainer.trainer) }}">{{ trainer.trainer }}</a></h3>
+        <h3><a href="{{ url_for('trainer_profile', trainer=trainer) }}">{{ trainer }}</a></h3>
         <h6>Currently Training:</h6>
         <ul>
         {% for dog in dogs %}
-            {% if dog.trainer == trainer.trainer %}
+            {% if dog.trainer == trainer %}
                 <li><a href="{{ url_for('dog_profile', dog_id=dog.id) }}">{{ dog.name }}</a></li>
             {% endif %}
         {% endfor %}

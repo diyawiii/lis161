@@ -2,7 +2,8 @@ import sqlite3, random
 
 db_path = 'test.db'
 
-trainers = ['Youngster Joey', 'Sabrina', 'Red', 'Steven', 'Allister']
+# list of employed trainers
+employed_trainers = ['Youngster Joey', 'Sabrina', 'Red', 'Steven', 'Allister']
 
 # Connect to a database
 def connect_db(path):
@@ -11,7 +12,7 @@ def connect_db(path):
     conn.row_factory = sqlite3.Row
     return (conn, conn.cursor())
 
-# Show dog name and id
+# returns all information about all dogs
 def show_dogs():
     conn, cur = connect_db(db_path)
     query = 'SELECT * FROM dogs'
@@ -19,15 +20,15 @@ def show_dogs():
     conn.close()
     return results
 
+# Return information about a dog given their name and owner
 def read_dog_by_name_owner(dog_name, dog_owner):
     conn, cur = connect_db(db_path)
     query = 'SELECT * FROM dogs WHERE name=? AND owner=?'
     results = cur.execute(query, (dog_name, dog_owner,)).fetchone()
     conn.close()
-    print(results)
     return results
 
-# Read a pet given a pet id
+# Return information about a dog given their id
 def read_dog_by_id(dog_id):
     conn, cur = connect_db(db_path)
     query = 'SELECT * FROM dogs WHERE id=?'
@@ -35,7 +36,7 @@ def read_dog_by_id(dog_id):
     conn.close()
     return result
 
-# Insert Pet Data to DB
+# Insert dog data to DB
 def enroll_dog(dog_data):
     conn, cur = connect_db(db_path)
     query = 'INSERT INTO dogs (name, breed, age, owner, treats, pic, trainer, medical) VALUES (?,?,?,?,?,?,?,?)'
@@ -51,7 +52,7 @@ def enroll_dog(dog_data):
     conn.commit()
     conn.close()
 
-# Delete a pet record
+# Delete a dog's data from the DB
 def unenroll_dog(dog_id):
     conn, cur = connect_db(db_path)
     query = 'DELETE FROM dogs WHERE id=?'
@@ -59,7 +60,7 @@ def unenroll_dog(dog_id):
     conn.commit()
     conn.close()
 
-# Update Pet Data from DB
+# Update dog's profile data in DB
 def update_dogs(dog_data):
     conn, cur = connect_db(db_path)
     query = 'UPDATE dogs SET name=?, breed=?, age=?, owner=?, treats=?, pic=? WHERE id=?'
@@ -74,16 +75,7 @@ def update_dogs(dog_data):
     conn.commit()
     conn.close()
 
-def update_medical(dog_data):
-    conn, cur = connect_db(db_path)
-    query = 'UPDATE dogs SET medical = (SELECT medical FROM dogs WHERE id=?) ||","|| char(10) || ? WHERE id=?'
-    values = (dog_data['id'],
-              dog_data['medical'],
-              dog_data['id'])
-    cur.execute(query, values)
-    conn.commit()
-    conn.close()
-
+# Edit dog's existing medical data in DB
 def edit_medical(dog_data):
     conn, cur = connect_db(db_path)
     query = 'UPDATE dogs SET medical = ? WHERE id=?'
@@ -93,9 +85,11 @@ def edit_medical(dog_data):
     conn.commit()
     conn.close()
 
+# randomly assigns a trainer to a dog from the list of employed trainers
 def assign_trainer():
-    return trainers[random.randint(0, len(trainers)-1)]
+    return employed_trainers[random.randint(0, len(employed_trainers)-1)]
 
+# orders DB by trainer
 def order_by_trainer():
     conn, cur = connect_db(db_path)
     query = 'SELECT * FROM dogs ORDER BY trainer'
@@ -103,22 +97,18 @@ def order_by_trainer():
     conn.close()
     return result
 
-def show_trainers():
-    conn, cur = connect_db(db_path)
-    query = 'SELECT DISTINCT trainer FROM dogs'
-    result = cur.execute(query).fetchall()
-    conn.close()
-    return result
-
-def show_trainers_dogs(name):
+# shows all dogs trained by a specific trainer identified by the trainer's name
+def show_trainers_dogs(trainer_name):
     conn, cur = connect_db(db_path)
     query = 'SELECT * FROM dogs WHERE trainer=?'
-    result = cur.execute(query, (name,)).fetchall()
+    result = cur.execute(query, (trainer_name,)).fetchall()
     conn.close()
     return result
 
+# Add new trick data to dog's existing data in DB
 def update_trick(dog_data):
     conn, cur = connect_db(db_path)
+    # formats new data to be comma separated from old data
     query = 'UPDATE dogs SET tricks= (SELECT tricks FROM dogs WHERE id=?) ||", " || ? WHERE id=?'
     values = (dog_data['id'], dog_data['tricks'], dog_data['id'])
     cur.execute(query, values)

@@ -3,28 +3,34 @@ from dog_data import *
 
 app = Flask(__name__)
 
+# shows index
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/dogs')
-def dogs():
+# shows list of dogs
+@app.route('/dog_list')
+def dog_list():
+    # returns all data about all dogs
     dogs = show_dogs()
-    return render_template('dogs.html',dogs=dogs)
+    return render_template('dogs.html', dogs=dogs)
 
+# shows profile of specific dog identified by ID
 @app.route('/dog_profile/<int:dog_id>')
 def dog_profile(dog_id):
+    # returns information about one dog. Dog ID number used to identify
     dog = read_dog_by_id(dog_id)
-    return render_template('dog_profile.html',dog=dog)
+    return render_template('dog_profile.html', dog=dog)
 
+# shows dog enrollment page
 @app.route('/enroll')
 def enroll():
     return render_template('enroll.html')
 
-
+# processes dog enrollment data
 @app.route('/process', methods=['post'])
 def process():
-    # Prepare data by extracting it from the HTML form
+    # Prepares data by extracting it from the HTML form
     dog_data = {'name': request.form['dog_name'],
                 'breed': request.form['dog_breed'],
                 'age': request.form['dog_age'],
@@ -32,25 +38,32 @@ def process():
                 'treats': request.form['dog_treats'],
                 'pic': request.form['dog_pic'],
                 'medical': request.form['dog_medical'],
-                'trainer': assign_trainer()}
+                'trainer': assign_trainer()} # randomly assigns a trainer to the dog
+    # adds data to database
     enroll_dog(dog_data)
     return redirect(url_for('welcome', dog_name=request.form['dog_name'], dog_owner=request.form['dog_owner']))
 
+# shows welcome page
 @app.route('/welcome/<string:dog_name>/<string:dog_owner>')
 def welcome(dog_name, dog_owner):
+    # returns information about one dog. Dog name and owner used to identify
     dog = read_dog_by_name_owner(dog_name, dog_owner)
-    return render_template('welcome.html', dogs=dog)
+    return render_template('welcome.html', dog=dog)
 
+# processes buttons on dog_profile page for editing dog profile data or deleting dog
 @app.route('/modify/<int:dog_id>', methods=['POST'])
 def modify(dog_id):
+    # returns information about one dog. Dog ID number used to identify
     dog = read_dog_by_id(dog_id)
+
+    # processes which action to take depending on which button is clicked. Redirects user to edit page or unenrolls dog
     if request.form['action'] == 'Edit':
         return render_template('edit.html', dog=dog)
     elif request.form['action'] == 'Delete':
         unenroll_dog(dog_id)
         return redirect(url_for('dogs'))
 
-
+# updates dog profile data
 @app.route('/update/<int:dog_id>', methods=['post'])
 def update(dog_id):
     # Get data from the form
@@ -72,57 +85,62 @@ def update(dog_id):
         'pic': dog_pic,
     }
 
-    #Update DB
+    # Update DB
     update_dogs(dog_data)
     # Redirect User
     return redirect(url_for('dog_profile', dog_id=dog_id))
     pass
 
+# renders the page for editing medical data
 @app.route('/modify_medical/<int:dog_id>', methods=['POST'])
 def modify_medical(dog_id):
+    # returns information about one dog. Dog ID number used to identify
     dog = read_dog_by_id(dog_id)
     return render_template('edit_medical.html', dog=dog)
 
-@app.route('/update_medical/<int:dog_id>', methods=['POST'])
-def update_medical_record(dog_id):
-    dog_medical = request.form['new_medical']
-    dog_data = {
-        'medical': dog_medical,
-        'id': dog_id
-    }
-    update_medical(dog_data)
-    return redirect(url_for('dog_profile', dog_id=dog_id))
-    pass
-
+# processes edits to medical data
 @app.route('/edit_medical/<int:dog_id>', methods=['post'])
 def edit_medical_record(dog_id):
+    # get medical data from the form
     dog_medical = request.form['edit_medical']
+
+    # prepare medical data and dog ID data for DB update
     dog_data = {
         'medical': dog_medical,
         'id': dog_id
     }
+    # updates DB
     edit_medical(dog_data)
+    # redirects user to dog's profile
     return redirect(url_for('dog_profile', dog_id=dog_id))
     pass
 
-@app.route('/trainers')
-def trainers():
+# renders the list of trainers
+@app.route('/trainer_list')
+def trainer_list():
+    # returns all dogs ordered by trainer
     dogs = order_by_trainer()
-    trainers = show_trainers()
-    return render_template('list_trainers.html', dogs=dogs, trainers=trainers)
+    return render_template('list_trainers.html', dogs=dogs, trainers=employed_trainers)
 
+# renders the trainer profiles
 @app.route('/trainer_profile/<string:trainer>')
 def trainer_profile(trainer):
+    # returns all the dogs trained by the same trainer
     dogs = show_trainers_dogs(trainer)
     return render_template('trainer_profile.html', dogs=dogs, trainer=trainer)
 
+# processes updates to tricks
 @app.route('/update_tricks/<int:dog_id>', methods=['post'])
 def update_tricks(dog_id):
+    # gets trick data from the form
     tricks = request.form['dog_tricks']
+
+    # packages trick data with dog ID data for DB update
     dog_data = {
         'tricks': tricks,
         'id': dog_id,
     }
+    # updates DB
     update_trick(dog_data)
     return redirect(url_for('dog_profile', dog_id=dog_id))
     pass
