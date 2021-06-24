@@ -4,4 +4,4 @@ This project is titled Pawprint: Doggo Training School Records Management System
 
 The system also allows owners to enrol their furry dog babies to the training school by going to the "Enroll your Dog" webpage and by filling out the registration form with the right and accurate information details about the dog. After successfull registration, the dog's and owner's information is now recorded in the system which can be edited and deleted by the owners, trainers, and admin. Moreover, the website allows users to view dogs' and trainers' information through the "Meet the Dogs" and "Our Trainers" webpages.
 
-Looking and exploring the system deeper, it handles 
+Looking and exploring the system deeper, the system handles several data types such as integers, strings, lists, and dictionaries. Moreover, it records enrolled dog's ID number, name, breed, age, name of owner, treats, name of trainer, dog's picture, learned tricks, and medical history. 
