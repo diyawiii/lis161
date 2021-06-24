@@ -50,3 +50,112 @@
     color: gray;
 }
 
+.index-bg {
+    background: url("../img/index-2.jpg") no-repeat center;
+    background-size: cover;
+    color: black;
+    float: none;
+}
+
+.index-p {
+    font-size: 1.5em;
+    font-weight: 500;
+    font-style: italic;
+    color: #267c92;
+}
+
+.index-description-div {
+    background: url("../img/Background-side.png") no-repeat  center  center fixed;
+    background-size: cover;
+    min-height: 100%;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    margin-top: 10em;
+    padding-top: 2em;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.index-description {
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+.index-description > h3 {
+    text-decoration: #555555 underline;
+    color: #184e77;
+    font-weight: 400;
+}
+
+.index-description > p {
+    text-align: center;
+    font-size: 1.25em;
+    margin-bottom: 2.5em;
+}
+
+.index-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.waiting-for {
+    font-size: 1.25em;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.index-button {
+    width: 25%;
+    align-self: center;
+}
+
+.index-p, .index-h {
+    text-shadow: 2px 2px #ffffff;
+}
+
+.index-h {
+    color: #0666cb;
+}
+
+p {
+    color: #168aad;
+}
+
+h1 {
+    color: #354f52;
+}
+
+.enroll-main {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+
+.enroll-card {
+    border: 2px solid #354f52;
+    margin-top: 1em;
+    border-radius: 2em;
+    transform: rotate(5deg);
+}
+
+.enroll-card > img {
+    border-radius: 2em 2em 0 0;
+}
+
+.enroll-div-cards {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    justify-items: auto;
+    height: 800px;
+    max-width: 50%;
+}
+
+#carouselExampleInterval {
+    margin-top: 5em;
+    max-height: 700px;
+}
