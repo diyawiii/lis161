@@ -64,7 +64,7 @@ def modify(dog_id):
         unenroll_dog(dog_id)
         return redirect(url_for('dog_list'))
 
-# updates dog profile data. Trainer data cannot be updated by the user.
+# updates dog profile data
 @app.route('/update/<int:dog_id>', methods=['post'])
 def update(dog_id):
     # Get data from the form
