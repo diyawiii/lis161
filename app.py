@@ -8,11 +8,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# shows the about page
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
 # shows list of dogs
 @app.route('/dog_list')
 def dog_list():
