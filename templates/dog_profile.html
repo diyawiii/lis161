@@ -2,35 +2,77 @@
 {% block title %}{{ dog.name }}'s Profile{% endblock %}
 
 {% block content %}
-<h1>{{ dog.name }}</h1>
-{% if dog.pic %}
-<img src="{{ dog.pic }}" alt="">
-{% else %}
-<br><p>No Picture</p>
-{% endif %}
-<ul>
-  {% if dog.breed %}
-  <li>Breed: {{ dog.breed }}</li>
-  {% else %}
-  <li>No breed info available</li>
-  {% endif %}
-  <li>Age: {{ dog.age }}</li>
-  <li>Owner: {{ dog.owner }}</li>
-  <li>Favorite Treat: {{ dog.treats }} </li>
-  <li>Trainer: <a href="{{ url_for('trainer_profile', trainer=dog.trainer) }}">{{ dog.trainer }}</a></li>
-  <li>Known Tricks: {{ dog.tricks }} </li>
-</ul>
-<form action="{{ url_for('modify',dog_name=dog.name, dog_id=dog.id) }}" method="post">
-  <input class="btn btn-secondary" type="submit" value="Edit" name="action">
-  <input class="btn btn-danger" type="submit" value="Unenroll" name="action">
-</form>
-<br><br>
-<h3>Medical Record</h3>
-<div>{{ dog.medical }}</div><br>
-<form action="{{ url_for('modify_medical', dog_id=dog.id) }}" method="post">
-    <input class="btn btn-primary" type="submit" value="Edit Record" name="action">
-</form>
+<main class="container-fluid dog-profile-main">
+  <h1 class="display-2 text-center">{{ dog.name }}</h1>
+  <div class="dog-profile-div">
+    {% if dog.pic %}
+    <img class="dog-profile-img img-fluid" src="{{ dog.pic }}" alt="">
+    {% else %}
+    <br><p>No Picture</p>
+    {% endif %}
+  </div>
 
-<a class="nav-link" href="{{ url_for('dog_list') }}">List of Enrolled Dogs</a>
-<a class="nav-link" href="{{ url_for('trainer_list') }}">List of Trainers</a>
+  <div class="dog-profile-info-div">
+
+    <h3 class="display-6 text-center">{{ dog.name }}'s Basic Info</h3>
+    <hr>
+
+    <table class="dog-profile-table">
+      <colgroup>
+        <col class="dog-profile-table-col">
+        <col class="dog-profile-table-col">
+      </colgroup>
+      <tr>
+        <td>Breed:</td>
+        {% if dog.breed %}
+          <td>{{ dog.breed }}</td>
+        {% else %}
+          <td>No breed info available</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <td>Age:</td>
+        <td>{{ dog.age }}</td>
+      </tr>
+      <tr>
+        <td>Owner:</td>
+        <td>{{ dog.owner }}</td>
+      </tr>
+      <tr>
+        <td>Favorite Treat:</td>
+        <td>{{ dog.treats }}</td>
+      </tr>
+      <tr>
+        <td>Trainer:</td>
+        <td><a href="{{ url_for('trainer_profile', trainer=dog.trainer) }}">{{ dog.trainer }}</a></td>
+      </tr>
+      <tr>
+        <td>Known Tricks:</td>
+        <td>{{ dog.tricks }}</td>
+      </tr>
+
+    </table>
+    <hr>
+
+    <form class="m-4" action="{{ url_for('modify',dog_name=dog.name, dog_id=dog.id) }}" method="post">
+      <input class="btn btn-secondary dog-profile-button" type="submit" value="Edit" name="action" >
+      <input class="btn btn-danger dog-profile-button" type="submit" value="Unenroll" name="action">
+    </form>
+
+  </div>
+
+  <div class="text-center m-2">
+    <br><br>
+    <h3 class="display-6">Medical Record</h3>
+    <div class="text-lead">{{ dog.medical }}</div><br>
+    <form action="{{ url_for('modify_medical', dog_id=dog.id) }}" method="post">
+        <input class="btn btn-primary btn-lg" type="submit" value="Edit Record" name="action">
+    </form>
+  </div>
+
+  <div class="text-center m-5">
+    <a class="nav-link" href="{{ url_for('dog_list') }}">List of Enrolled Dogs</a>
+    <a class="nav-link" href="{{ url_for('trainer_list') }}">List of Trainers</a>
+  </div>
+</main>
 {% endblock %}

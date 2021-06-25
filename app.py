@@ -62,7 +62,7 @@ def modify(dog_id):
         return render_template('edit.html', dog=dog)
     elif request.form['action'] == 'Unenroll':
         unenroll_dog(dog_id)
-        return redirect(url_for('dogs_list'))
+        return redirect(url_for('dog_list'))
 
 # updates dog profile data
 @app.route('/update/<int:dog_id>', methods=['post'])

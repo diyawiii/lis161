@@ -3,6 +3,7 @@
 
 {% block content %}
 <h1>Dogs being Trained by {{ trainer }}</h1>
+
 {% for dog in dogs %}
   <h4><a href="{{ url_for('dog_profile', dog_id=dog.id) }}">{{ dog.name }}</a></h4>
   {% if dog.pic %}
@@ -29,4 +30,5 @@
 <br><br>
 <a class="nav-link" href="{{ url_for('trainer_list') }}">Return to list of Trainers</a>
 {% endfor %}
+
 {% endblock %}
