@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Welcome!{% endblock %}
 {% block content %}
-<h2>Welcome to Doggo Training School {{ dog.name }} and {{dog.owner}}</h2>
+<h2 class="display-3 text-center mb-4 welcome-h">Welcome to Doggo Training School<br>{{ dog.name }} and {{dog.owner}}</h2>
 
-<p>Your assigned trainer is {{ dog.trainer }}</p>
-<p>Click <a href="{{ url_for('dog_profile', dog_id=dog.id) }}">here</a> if you'd like to edit your dog's profile</p>
+<p class="text-center display-6 mb-5 welcome-p">Your assigned trainer is <strong><a href="{{ url_for('trainer_profile', trainer=dog.trainer) }}">{{ dog.trainer }}</a></strong></p>
+<p class="text-center display-6 mb-5">Click <strong><a href="{{ url_for('dog_profile', dog_id=dog.id) }}">here</a></strong> if you'd like to edit your dog's profile</p>
 {% endblock %}
