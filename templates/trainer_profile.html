@@ -70,8 +70,10 @@
 
                 <form action="{{ url_for('update_tricks', dog_id=dog.id) }}" method="post">
                   <label for="d_tricks" class="trainer-label">Log New Tricks:</label>
-                  <input class="form-control m-1" type="text" id="d_tricks" name="dog_tricks" required><br>
-                    <input class="btn btn-primary float-end" type="submit" value="Update Tricks" name="action">
+                  <input class="form-control m-1" type="text" id="d_tricks" name="dog_tricks" value="{{ dog.tricks }}" required><br>
+                  <div class="float-end">
+                    <input class="btn btn-primary" type="submit" value="Update Tricks" name="action">
+                  </div>
                 </form>
 
               </div>
