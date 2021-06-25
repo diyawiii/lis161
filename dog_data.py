@@ -45,8 +45,8 @@ def random_dog():
     enroll_showcase = []
     while len(enroll_showcase) < 4:
         chosen_dog = random.choice(result)
-        if random.randint(0, 1) == 1 and not (chosen_dog['name'], chosen_dog['pic']) in enroll_showcase:
-            enroll_showcase.append((chosen_dog['name'], chosen_dog['pic']))
+        if random.randint(0, 1) == 1 and not (chosen_dog['name'], chosen_dog['pic'], chosen_dog['id']) in enroll_showcase:
+            enroll_showcase.append((chosen_dog['name'], chosen_dog['pic'], chosen_dog['id']))
             continue
     conn.close()
     return enroll_showcase

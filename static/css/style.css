@@ -40,14 +40,19 @@
 .nav-link {
     font-weight: 500;
     margin: 0 .5em;
+    padding: 1.6em 1.2em;
 }
 
-#logo {
-    transition: color .5s;
+.logo-img {
+    max-height: 3em;
+    max-width: 3em;
+    border-radius: 75%;
+    transition: box-shadow .5s;
+    margin: .5em 1em;
 }
 
-#logo:active, #logo:hover {
-    color: gray;
+.logo-img:hover, .logo-img:active {
+     box-shadow: 0 0 10px 5px #eaebfa;
 }
 
 .index-bg {
@@ -61,11 +66,11 @@
     font-size: 1.5em;
     font-weight: 500;
     font-style: italic;
-    color: #267c92;
+    color: #dbfcf9;
 }
 
 .index-description-div {
-    background: url("../img/Background-side.png") no-repeat  center  center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05)), url("../img/Background-side.png") no-repeat  center  center fixed;
     background-size: cover;
     min-height: 100%;
     width: 100%;
@@ -112,11 +117,11 @@
 }
 
 .index-p, .index-h {
-    text-shadow: 2px 2px #ffffff;
+    text-shadow: 2px 2px #474747;
 }
 
 .index-h {
-    color: #0666cb;
+    color: #ffffff;
 }
 
 p {
@@ -138,7 +143,7 @@ h1 {
     border: 2px solid #354f52;
     margin-top: 1em;
     border-radius: 2em;
-    transform: rotate(5deg);
+    transform: rotate(5deg) ;
 }
 
 .enroll-card > img {
@@ -159,3 +164,71 @@ h1 {
     margin-top: 5em;
     max-height: 700px;
 }
+
+.enroll-card:active, .enroll-card:hover {
+    transform: scale(1.2, 1.2);
+    outline: none;
+    border: .25em solid #6ec3ff;
+    box-shadow: 0 20px 30px #72baf1;
+    text-shadow: 0 0 20px #38fff8, 0 0 30px #1aafff, 0 0 40px #0eaefd, 0 0 50px #0a7af1, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+}
+
+.enroll-h {
+    margin-left: 3.5em;
+    margin-top: .25em;
+    font-style: italic;
+}
+
+.enroll-div-cards > a {
+    text-decoration: none;
+    color: #267c92;
+}
+
+.dog-list-div-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.dog-list-div-cards > a {
+    display: inline;
+}
+
+.dog-card {
+    border: 2px solid #3B666B;
+    padding-right: 0;
+    padding-left: 0;
+    border-radius: 2em;
+    text-align: center;
+}
+
+.dog-card:hover {
+    transform: scale(1.1, 1.1);
+    text-decoration: none !important;
+}
+
+.dog-card:active, .dog-card:focus {
+    transform: scale(.9, .9);
+    text-decoration: none !important;
+}
+
+.card-img-top {
+    min-height: 16rem;
+    max-height: 16rem;
+    object-fit: cover
+}
+
+.dog-img {
+    border-radius: 2em 2em 0 0;
+}
+
+.dog-title {
+    text-decoration: white underline;
+    color: #3B666B;
+    font-weight: 600;
+}
+
+
+

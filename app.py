@@ -60,9 +60,9 @@ def modify(dog_id):
     # processes which action to take depending on which button is clicked. Redirects user to edit page or unenrolls dog
     if request.form['action'] == 'Edit':
         return render_template('edit.html', dog=dog)
-    elif request.form['action'] == 'Delete':
+    elif request.form['action'] == 'Unenroll':
         unenroll_dog(dog_id)
-        return redirect(url_for('dogs'))
+        return redirect(url_for('dogs_list'))
 
 # updates dog profile data
 @app.route('/update/<int:dog_id>', methods=['post'])
