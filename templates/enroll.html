@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container-fluid m-3 enroll-main">
     <div>
-        <h1>Enroll your dog in Doggo Training School</h1>
+        <h1 class="display-6 m-1">Enroll your dog in Doggo Training School</h1>
         <form class="enroll-form" action="{{ url_for('process') }}" method="post">
             <p class="enroll-p">
                 <label class="enroll-label" for="d_name">Name of Dog:</label>
@@ -31,22 +31,31 @@
             </p>
             <p class="enroll-p">
                 <label class="enroll-label" for="d_pic">URL for Picture:</label>
-                <input class="enroll-input form-control" type="text" name="dog_pic" id="d_pic"><br>
+                <input class="enroll-input form-control" type="text" name="dog_pic" id="d_pic"><br><br>
             </p>
             <p class="enroll-p">
                 <input type="submit" value="Register!" class="btn btn-primary enroll-button">
             </p>
         </form>
     </div>
-    <div class="enroll-div-cards">
-        {% for dog in dog_4list %}
-        <div class="card enroll-card shadow-lg" style="width: 18rem;">
-          <img src="{{ dog[1] }}" class="card-img-top" alt="{{dog[0]}}'s Picture">
-          <div class="card-body">
-            <h5 class="card-title text-center fw-bold">{{ dog[0] }}</h5>
-          </div>
+    <div>
+        <h2 class="display-6 enroll-h">Our Enrolled Dogs</h2>
+        <div class="enroll-div-cards">
+            {% for dog in dog_4list %}
+            <a href="{{ url_for('dog_profile', dog_id=dog[2]) }}" class="m-2">
+                <div class="card enroll-card shadow-lg" style="width: 18rem;">
+
+                <img src="{{ dog[1] }}" class="card-img-top" alt="{{dog[0]}}'s Picture">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold">{{ dog[0] }}</h5>
+                  </div>
+                </div>
+            </a>
+
+
+
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 {% endblock %}
