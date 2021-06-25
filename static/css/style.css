@@ -128,7 +128,7 @@ p {
     color: #168aad;
 }
 
-h1 {
+h1, h2, h3 {
     color: #354f52;
 }
 
@@ -192,26 +192,25 @@ h1 {
     align-items: center;
 }
 
-.dog-list-div-cards > a {
-    display: inline;
-}
-
 .dog-card {
     border: 2px solid #3B666B;
     padding-right: 0;
     padding-left: 0;
     border-radius: 2em;
     text-align: center;
+    transition: box-shadow .25s, transform .3s;
 }
 
 .dog-card:hover {
     transform: scale(1.1, 1.1);
     text-decoration: none !important;
+    box-shadow: 0 10px 20px #72baf1;
 }
 
 .dog-card:active, .dog-card:focus {
     transform: scale(.9, .9);
     text-decoration: none !important;
+
 }
 
 .card-img-top {
@@ -230,5 +229,94 @@ h1 {
     font-weight: 600;
 }
 
+.trainer-list-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.trainer-div {
+    min-height: 15em;
+}
+
+.trainer-h {
+    color: #3B666B;
+    text-decoration: none;
+    align-self: center;
+    font-weight: 500;
+}
+
+.trainer-dog-link {
+    text-decoration: none;
+    color: #37575b;
+    font-size: 1.75em;
+    font-weight: 500;
+}
+
+.trainer-div > div > h6 {
+    margin-left: 1em;
+}
+
+.trainer-dog-list {
+    margin-left: 1.5em;
+}
+
+.dog-profile-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)) no-repeat  center  center fixed;
+}
+
+.dog-profile-div {
+    align-self: center;
+    min-width: 60%;
+}
+
+.dog-profile-img {
+    min-width: 80%;
+    align-self: center;
+    margin: auto;
+    display: block;
+    border: .4rem solid #3B666B;
+}
+
+.dog-profile-info-div {
+    margin-top: 2em;
+    font-size: 1.6rem;
+}
+
+.dog-profile-table-col {
+    width: 15rem;
+}
+
+td:nth-child(1) {
+    font-weight: 700;
+}
+
+.dog-profile-table {
+    color: #3B666B;
+    font-weight: 400;
+}
 
 
+.dog-profile-button {
+    margin-top: 2rem;
+    width: 15rem;
+    padding: 1rem 0;
+}
+
+.edit-medical-textarea {
+    width: 30%;
+    align-self: center;
+    margin: auto;
+    display: block;
+}
+
+.edit-medical-button {
+    width: 12rem;
+    margin: 2rem 2rem;
+}

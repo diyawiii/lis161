@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}Edit {{ dog.name }}'s Medical Record{% endblock %}
 {% block content %}
-<h3>Current Medical Record</h3>
-<p>{{ dog.medical }}</p><br><br>
-<h3>Edit Existing Medical Records</h3>
-<form action="{{ url_for('edit_medical_record', dog_id=dog.id) }}" method="post">
-  <label for="d_edit_medical">Edit Medical Record:</label><br>
-  <textarea name="edit_medical" cols="30" rows="10" id="d_edit_medical">{{ dog.medical }}</textarea><br>
-  <input class="btn btn-primary" type="submit" value="Edit Record" name="action">
-  <a class="btn btn-danger" href="{{ url_for('dog_profile', dog_id=dog.id) }}">Cancel</a>
-</form><br>
+<main class="container-fluid text-center">
+  <div class="m-3">
+    <h3 class="display-4">Current Medical Record</h3>
+    <p class="lead fw-normal">{{ dog.medical }}</p><br><br>
+  </div>
+
+  <h3 class="display-5 m-4">Edit Existing Medical Records</h3>
+  <form action="{{ url_for('edit_medical_record', dog_id=dog.id) }}" method="post">
+    <label for="d_edit_medical" class="text-muted lead fw-normal">Edit Medical Record:</label><br>
+    <textarea name="edit_medical" class="form-control edit-medical-textarea" cols="30" rows="10" id="d_edit_medical">{{ dog.medical }}</textarea><br>
+    <input class="btn btn-primary edit-medical-button" type="submit" value="Edit Record" name="action">
+    <a class="btn btn-danger edit-medical-button" href="{{ url_for('dog_profile', dog_id=dog.id) }}">Cancel</a>
+  </form><br>
+</main>
 {% endblock %}
 
 
