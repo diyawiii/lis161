@@ -320,3 +320,61 @@ td:nth-child(1) {
     width: 12rem;
     margin: 2rem 2rem;
 }
+
+#enroll-div-dogs {
+    margin-left: 10rem;
+}
+
+.dog-profile-a {
+    display: inline;
+}
+
+.dog-profile-a:first-child {
+    margin-right: 2.5rem;
+}
+
+.trainer-profile-div {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.trainer-profile-dog-card {
+    width: 30rem;
+    min-height: 15rem;
+    padding: 0;
+    border: .35em solid #3B666B;
+    border-radius: 2rem;
+}
+
+.trainer-profile-dog-img {
+    min-height: 25rem;
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.accordion-head {
+    color: #3B666B;
+    font-weight: 600;
+}
+
+.trainer-label {
+    color: #3B666B;
+    font-weight: 500;
+}
+
+.trainer-profile-a {
+    display: inline;
+    margin: 10em 2em;
+}
+
+.welcome-h {
+    font-weight: 500;
+    width: 70%;
+    align-self: center;
+    margin: auto;
+    display: block;
+    padding-top: 5rem;
+}
+
+.welcome-p {
+    padding: 5rem 0;
+}
