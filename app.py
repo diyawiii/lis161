@@ -147,4 +147,4 @@ def update_tricks(dog_id):
     pass
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
