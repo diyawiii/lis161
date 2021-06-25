@@ -17,7 +17,7 @@
     <h3 class="display-6 text-center">{{ dog.name }}'s Basic Info</h3>
     <hr>
 
-    <table class="dog-profile-table">
+    <table class="dog-profile-table table">
       <colgroup>
         <col class="dog-profile-table-col">
         <col class="dog-profile-table-col">
@@ -71,8 +71,8 @@
   </div>
 
   <div class="text-center m-5">
-    <a class="nav-link" href="{{ url_for('dog_list') }}">← To List of Enrolled Dogs</a>
-    <a class="nav-link" href="{{ url_for('trainer_list') }}">To List of Trainers →</a>
+    <a class="nav-link dog-profile-a" href="{{ url_for('dog_list') }}">← To List of Enrolled Dogs</a>
+    <a class="nav-link dog-profile-a" href="{{ url_for('trainer_list') }}">To List of Trainers →</a>
   </div>
 </main>
 {% endblock %}

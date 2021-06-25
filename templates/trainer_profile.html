@@ -2,34 +2,98 @@
 {% block title %}{{ trainer }}'s Dogs{% endblock %}
 
 {% block content %}
-<h1>Dogs being Trained by {{ trainer }}</h1>
+<h1 class="display-3 text-center m-3">Dogs being Trained by {{ trainer }}</h1>
 
-{% for dog in dogs %}
-  <h4><a href="{{ url_for('dog_profile', dog_id=dog.id) }}">{{ dog.name }}</a></h4>
-  {% if dog.pic %}
-  <img src="{{ dog.pic }}" alt="">
-  {% else %}
-  <br><p>No Picture</p>
-  {% endif %}
-  <ul>
-    {% if dog.breed %}
-    <li>Breed: {{ dog.breed }}</li>
-    {% else %}
-    <li>No breed info available</li>
-    {% endif %}
-    <li>Age: {{ dog.age }}</li>
-    <li>Owner: {{ dog.owner }}</li>
-    <li>Favorite Treat: {{ dog.treats }}</li>
-    <li>Tricks: {{ dog.tricks }}</li>
-  </ul>
-<form action="{{ url_for('update_tricks', dog_id=dog.id) }}" method="post">
-  <label for="d_tricks">Log New Tricks:</label>
-  <input type="text" name="dog_tricks" id="d_tricks"><br><br>
-  <input class="btn btn-primary" type="submit" value="Update Tricks" name="action">
-</form>
-<br><br>
-{% endfor %}
-<a class="nav-link" href="{{ url_for('trainer_list') }}">← Return to list of Trainers</a>
+  <div class="row trainer-profile-div">
+  {% for dog in dogs %}
+
+    <div class="card col-md-4 m-4 trainer-profile-dog-card">
+<!--      <a href="{{ url_for('dog_profile', dog_id=dog.id) }}" class="dod-title">-->
+      <img src="{{ dog.pic }}" class="card-img-top trainer-profile-dog-img" alt="...">
+      <div class="card-body">
+        <h5 class="card-title display-6 dog-title">{{ dog.name }}</h5>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ dog.id }}" aria-expanded="true" aria-controls="collapseOne{{ dog.id }}">
+                <h6 class="accordion-head mb-2 text-muted lead">{{ dog.name }}'s Basic Info</h6>
+              </button>
+            </h2>
+            <div id="collapseOne{{ dog.id }}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+
+                <table class="dog-profile-table table">
+
+                  <colgroup>
+                    <col class="dog-profile-table-col">
+                    <col class="dog-profile-table-col">
+                  </colgroup>
+                  <tr>
+                    <td>Breed:</td>
+                    {% if dog.breed %}
+                      <td>{{ dog.breed }}</td>
+                    {% else %}
+                      <td>No breed info available</td>
+                    {% endif %}
+                  </tr>
+                  <tr>
+                    <td>Age:</td>
+                    <td>{{ dog.age }}</td>
+                  </tr>
+                  <tr>
+                    <td>Owner:</td>
+                    <td>{{ dog.owner }}</td>
+                  </tr>
+                  <tr>
+                    <td>Favorite Treat:</td>
+                    <td>{{ dog.treats }}</td>
+                  </tr>
+                  <tr>
+                    <td>Known Tricks:</td>
+                    <td>{{ dog.tricks }}</td>
+                  </tr>
+
+                </table>
+
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo{{ dog.id }}" aria-expanded="false" aria-controls="collapseTwo{{ dog.id }}">
+                <h6 class="accordion-head mb-2 lead">Update Tricks</h6>
+              </button>
+            </h2>
+            <div id="collapseTwo{{ dog.id }}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+
+                <form action="{{ url_for('update_tricks', dog_id=dog.id) }}" method="post">
+                  <label for="d_tricks" class="trainer-label">Log New Tricks:</label>
+                  <input class="form-control m-1" type="text" id="d_tricks" name="dog_tricks" required><br>
+                  <div class="float-end">
+                    <input class="btn btn-primary" type="submit" value="Update Tricks" name="action">
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!--        </a>-->
+    </div>
+  {% endfor %}
+  </div>
+
+
+
+
+
+
+
+<a class="nav-link trainer-profile-a" href="{{ url_for('trainer_list') }}">← Return to list of Trainers</a>
+
 
 
 {% endblock %}
