@@ -91,7 +91,7 @@ def update_dogs(dog_data):
     conn.commit()
     conn.close()
 
-# Edit dog's existing medical data in DB
+# Edit dog's existing medical data in DB given the dog's ID
 def edit_medical(dog_data):
     conn, cur = connect_db(db_path)
     query = 'UPDATE dogs SET medical = ? WHERE id=?'
@@ -121,12 +121,11 @@ def show_trainers_dogs(trainer_name):
     conn.close()
     return result
 
-# Add new trick data to dog's existing data in DB
+# Add new trick data to dog's existing data in DB given the dog's ID
 def update_trick(dog_data):
     conn, cur = connect_db(db_path)
-    # formats new data to be comma separated from old data
-    query = 'UPDATE dogs SET tricks= (SELECT tricks FROM dogs WHERE id=?) ||", " || ? WHERE id=?'
-    values = (dog_data['id'], dog_data['tricks'], dog_data['id'])
+    query = 'UPDATE dogs SET tricks=? WHERE id=?'
+    values = (dog_data['tricks'], dog_data['id'])
     cur.execute(query, values)
     conn.commit()
     conn.close()
